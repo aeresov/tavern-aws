@@ -9,6 +9,6 @@ properties:
         type: object
         properties:
             profile:
-                type: str
+                type: string
             service:
-                type: str
+                type: string
