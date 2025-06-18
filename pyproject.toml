@@ -1,6 +1,6 @@
 [project]
 name = "tavern-aws"
-version = "0.0.5"
+version = "0.0.6"
 description = "HTTP plugin for Tavern with AWS4Auth"
 readme = "README.md"
 requires-python = ">=3.11"
