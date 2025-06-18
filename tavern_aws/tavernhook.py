@@ -18,5 +18,5 @@ def load_plugin_schema():
 
 class TavernAwsPlugin(TavernRestPlugin):
     session_type = AWSSession
-    request_type = AwsRequest
+    # request_type = AwsRequest
     schema = load_plugin_schema()
