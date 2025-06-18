@@ -18,7 +18,6 @@ class AWSSession(requests.Session):
             "service",
             "region",
         }
-        logger.info(f"kwargs: {kwargs}")
         check_expected_keys(expected_blocks, kwargs)
 
         profile = kwargs.get("profile")
@@ -36,10 +35,10 @@ class AWSSession(requests.Session):
         if credentials is None:
             raise RuntimeError("No credentials found")
         auth = AWS4Auth(
-            access_id=credentials.access_key,
-            secret_key=credentials.secret_key,
-            region=region,
-            service=service,
+            credentials.access_key,
+            credentials.secret_key,
+            region,
+            service,
             session_token=credentials.token,
         )
         self.auth = auth
