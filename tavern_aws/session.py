@@ -18,6 +18,7 @@ class AWSSession(requests.Session):
             "service",
             "region",
         }
+        logger.info(f"kwargs: {kwargs}")
         check_expected_keys(expected_blocks, kwargs)
 
         profile = kwargs.get("profile")
