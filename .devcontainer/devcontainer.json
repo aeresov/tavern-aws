@@ -1,0 +1,25 @@
+{
+    "name": "Python w/poetry",
+    "image": "mcr.microsoft.com/devcontainers/python:3",
+    "features": {},
+    "remoteEnv": {
+        "POETRY_VIRTUALENVS_IN_PROJECT": "true"
+    },
+    "runArgs": ["--network=host"],
+    "mounts": ["target=${containerWorkspaceFolder}/.venv,type=volume"],
+    "postCreateCommand": {
+        "tools": "sudo chown --recursive $(whoami): /home/$(whoami) && pipx install poetry",
+        "venv": "sudo chown --recursive $(whoami): ${containerWorkspaceFolder}/.venv"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "-ms-python.autopep8",
+                "ms-python.black-formatter",
+                "ms-python.isort",
+                "tamasfe.even-better-toml",
+                "esbenp.prettier-vscode"
+            ]
+        }
+    }
+}

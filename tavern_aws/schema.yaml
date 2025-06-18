@@ -1,0 +1,15 @@
+---
+name: AWS sigv4 auth schemas
+desc: pykwalify schemas for 'aws' plugin block
+
+initialisation:
+    aws:
+        required: false
+        type: map
+        mapping:
+            profile:
+                required: true
+                type: str
+            service:
+                required: true
+                type: str
