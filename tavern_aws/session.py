@@ -37,3 +37,9 @@ class AWSSession(requests.Session):
             msg = "Need to specify aws profile"
             logger.error(msg)
             raise exceptions.MissingKeysError(msg) from e
+
+    def __enter__(self):
+        pass
+
+    def __exit__(self, *args):
+        pass
