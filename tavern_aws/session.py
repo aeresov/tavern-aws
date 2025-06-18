@@ -27,11 +27,11 @@ class AWSSession(requests.Session):
             if credentials is None:
                 raise RuntimeError("No credentials found")
             auth = AWS4Auth(
-                credentials.access_key,
-                credentials.secret_key,
-                kwargs["region"],
-                kwargs["service"],
-                aws_session_token=credentials.token,
+                access_id=credentials.access_key,
+                secret_key=credentials.secret_key,
+                region=kwargs["region"],
+                service=kwargs["service"],
+                session_token=credentials.token,
             )
             self.auth = auth
         except KeyError as e:
