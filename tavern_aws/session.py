@@ -16,6 +16,7 @@ class AWSSession(requests.Session):
         expected_blocks = {
             "profile",
             "service",
+            "region",
         }
         check_expected_keys(expected_blocks, kwargs)
 
@@ -28,7 +29,7 @@ class AWSSession(requests.Session):
             auth = AWS4Auth(
                 credentials.access_key,
                 credentials.secret_key,
-                session.region_name,
+                kwargs["region"],
                 kwargs["service"],
                 aws_session_token=credentials.token,
             )

@@ -346,6 +346,7 @@ class AwsRequest(RestRequest):
             "headers",
             "data",
             "params",
+            # "auth",
             "json",
             "verify",
             "files",
