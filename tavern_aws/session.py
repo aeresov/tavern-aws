@@ -14,16 +14,13 @@ class AWSSession(requests.Session):
         super().__init__()
 
         expected_blocks = {
-            "aws": {
-                "profile",
-                "service",
-            },
+            "profile",
+            "service",
         }
-        check_expected_keys(expected_blocks.keys(), kwargs)
+        check_expected_keys(expected_blocks, kwargs)
 
         try:
-            self._aws_args = kwargs.pop("aws", {})
-            profile = self._aws_args["profile"]
+            profile = kwargs["profile"]
             session = boto3.Session(profile_name=profile)
             credentials = session.get_credentials()
             if credentials is None:
@@ -32,7 +29,7 @@ class AWSSession(requests.Session):
                 credentials.access_key,
                 credentials.secret_key,
                 session.region_name,
-                self._aws_args["service"],
+                kwargs["service"],
                 aws_session_token=credentials.token,
             )
             self.auth = auth
