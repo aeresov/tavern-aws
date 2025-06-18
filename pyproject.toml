@@ -1,6 +1,6 @@
 [project]
 name = "tavern-aws"
-version = "0.0.1"
+version = "0.0.2"
 description = "HTTP plugin for Tavern with AWS4Auth"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -17,8 +17,8 @@ dependencies = [
 aws = "tavern_aws.tavernhook"
 
 [tool.poetry]
-package-mode = false
 requires-poetry = ">=2.0"
+packages = [{ include = "tavern_aws" }]
 
 [tool.poetry.group.dev.dependencies]
 black = "^25.1.0"
