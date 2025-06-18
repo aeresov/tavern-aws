@@ -4,12 +4,9 @@ desc: pykwalify schemas for 'aws' plugin block
 
 properties:
     aws:
-        required: false
-        type: map
-        mapping:
+        type: object
+        properties:
             profile:
-                required: true
                 type: str
             service:
-                required: true
                 type: str
