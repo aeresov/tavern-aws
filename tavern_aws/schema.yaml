@@ -1,6 +1,8 @@
 ---
-name: AWS sigv4 auth schemas
-desc: pykwalify schemas for 'aws' plugin block
+$schema: "http://json-schema.org/draft-07/schema#"
+
+name: AWS sigv4 auth schema
+desc: jsonschema for AWS sigv4 auth
 
 properties:
     aws:
