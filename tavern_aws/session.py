@@ -1,6 +1,5 @@
 import logging
 
-import boto3
 import requests
 from requests_aws4auth import AWS4Auth
 from tavern._core import exceptions
@@ -14,32 +13,34 @@ class AWSSession(requests.Session):
         super().__init__()
 
         expected_blocks = {
-            "profile",
+            "access_key",
+            "secret_key",
             "service",
             "region",
+            "session_token",
         }
         check_expected_keys(expected_blocks, kwargs)
 
-        profile = kwargs.get("profile")
-        if not profile:
-            raise exceptions.MissingKeysError("Need to specify aws profile")
+        access_key = kwargs.get("access_key")
+        if not access_key:
+            raise exceptions.MissingKeysError("Need to specify aws access_key")
+        secret_key = kwargs.get("secret_key")
+        if not secret_key:
+            raise exceptions.MissingKeysError("Need to specify aws secret_key")
         service = kwargs.get("service")
         if not service:
             raise exceptions.MissingKeysError("Need to specify aws service")
         region = kwargs.get("region")
         if not region:
             raise exceptions.MissingKeysError("Need to specify aws region")
+        session_token = kwargs.get("session_token", None)
 
-        session = boto3.Session(profile_name=profile)
-        credentials = session.get_credentials()
-        if credentials is None:
-            raise RuntimeError("No credentials found")
         auth = AWS4Auth(
-            credentials.access_key,
-            credentials.secret_key,
+            access_key,
+            secret_key,
             region,
             service,
-            session_token=credentials.token,
+            session_token=session_token,
         )
         self.auth = auth
 
