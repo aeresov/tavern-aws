@@ -45,8 +45,8 @@ jobs:
     - name: Publish to TestPyPI
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       env:
-        POETRY_PYPI_TOKEN_TESTPYPI: ${{ secrets.PYPI_API_TOKEN }}
+        POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }}
       run: |
-        poetry config repositories.testpypi https://test.pypi.org/legacy/
-        poetry config pypi-token.testpypi $POETRY_PYPI_TOKEN_TESTPYPI  
-        poetry publish --repository testpypi
+        poetry config repositories.pypi https://pypi.org/legacy/
+        poetry config pypi-token.pypi $POETRY_PYPI_TOKEN_PYPI  
+        poetry publish --repository pypi
